@@ -12,6 +12,7 @@ enum input {
 	aim_dir,
 	hit,
 	jump,
+	back,
 }
 function input_check(_plr, _btn) {
 	var _kind = input_kind[_plr];
@@ -54,6 +55,14 @@ function input_pressed(_plr, _btn) {
 			} else if (_kind == 1) {
 				return gamepad_button_check_pressed(_index, gp_face1)
 					|| gamepad_button_check_pressed(_index, gp_shoulderlb);
+			}
+			break;
+		case input.back:
+			if (_kind == 0) {
+				return keyboard_check_pressed(_index * 256 + vk_escape);
+			} else if (_kind == 1) {
+				return gamepad_button_check_pressed(_index, gp_face2)
+					|| gamepad_button_check_pressed(_index, gp_select);
 			}
 			break;
 	}
