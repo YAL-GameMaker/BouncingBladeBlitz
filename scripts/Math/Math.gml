@@ -1,5 +1,46 @@
 function Math() {}
 
+function trace() {
+	/// @param ...
+	gml_pragma(@'global', @'
+	global.trace_buf = buffer_create(1024, buffer_grow, 1);
+	');
+	var b = global.trace_buf;
+	buffer_seek(b, buffer_seek_start, 0);
+	for (var i = 0; i < argument_count; i++) {
+		if (i) buffer_write(b, buffer_u8, ord(" "));
+		trace_1(b, argument[i], 0);
+	}
+	buffer_write(b, buffer_u8, 0);
+	buffer_seek(b, buffer_seek_start, 0);
+	var s = buffer_read(b, buffer_string);
+	show_debug_message(s);
+}
+function trace_1(b, v, d) {
+	var i, n;
+	if (is_array(v)) {
+		if (d > 8) {
+			buffer_write(b, buffer_text, "[...]");
+		} else if (array_height_2d(v) > 1) {
+			buffer_write(b, buffer_text, string(v));
+		} else {
+			buffer_write(b, buffer_u8, ord("["));
+			n = array_length_1d(v);
+			for (i = 0; i < n; i++) {
+				if (i) buffer_write(b, buffer_text, ", ");
+				trace_1(b, v[i], d);
+			}
+			buffer_write(b, buffer_u8, ord("]"));
+		}
+	} else if (is_string(v)) {
+		buffer_write(b, buffer_u8, ord(@'`'));
+		buffer_write(b, buffer_text, string(v));
+		buffer_write(b, buffer_u8, ord(@'`'));
+	} else {
+		buffer_write(b, buffer_text, string(v));
+	}
+}
+
 function point_length(_x, _y) {
 	return point_distance(0, 0, _x, _y);
 }
