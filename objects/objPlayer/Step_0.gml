@@ -26,7 +26,7 @@ yspeed *= dm;
 //
 dd = point_length(xspeed, yspeed);
 if (dd > 0) {
-	dm = max(dd - cfrict, 0) / dd;
+	dm = max(dd - (z > 0 ? africt : cfrict), 0) / dd;
 }
 xspeed *= dm;
 yspeed *= dm;
@@ -70,7 +70,9 @@ if (weapon_cool > 0) {
 		weapon_flip_cool = 1;
 	}
 }
-else if (input_pressed(player_index, input.hit)) {
+else if (input_pressed(player_index, input.hit)
+	&& (z <= 0 || zspeed < 0)
+) {
 	weapon_cool = 30;
 	weapon_flip *= -1;
 	weapon_flip_cool = -1;
@@ -88,11 +90,22 @@ else if (input_pressed(player_index, input.hit)) {
 
 //
 if (z <= 0) {
-	if (dz) zspeed = 3;
+	if (jump_cool > 0) {
+		jump_cool -= 1;
+	} else {
+		if (dz) {
+			zspeed = 3;
+			jump_cool = 30;
+		}
+	}
 } else {
 	zspeed -= 0.25;
 }
 if (zspeed != 0 || z > 0) {
 	z += zspeed;
 	if (z < 0) { z = 0; zspeed = 0; }
+}
+if (input_pressed(player_index, input.back)) {
+	lastGameRoom = room;
+	room_goto(rmMenu);
 }

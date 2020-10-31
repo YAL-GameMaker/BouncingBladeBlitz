@@ -20,7 +20,7 @@ function LevelSelect() : MenuItem() constructor {
 	arrTop = 0;
 	index = 0;
 	count = 1;
-	lastCount = 0;
+	lastCount = -1;
 	rooms = [];
 	scale = 0.5;
 	static measure = function(_menu) {
@@ -36,7 +36,7 @@ function LevelSelect() : MenuItem() constructor {
 				if (mouse_in_rect(_x - arrWidth, _y + arrTop, arrWidth, arrHeight)) d = -1;
 				if (mouse_in_rect(_x + width, _y + arrTop, arrWidth, arrHeight)) d = 1;
 				if (mouse_in_rect(_x, _y, width, height)) {
-					room_goto(rooms[index]);
+					objControl.gotoLevel(rooms[index]);
 					return true;
 				}
 			}
@@ -48,7 +48,7 @@ function LevelSelect() : MenuItem() constructor {
 			}
 			//
 			if (input_pressed_any(input.accept)) {
-				room_goto(rooms[index]);
+				objControl.gotoLevel(rooms[index]);
 				return true;
 			}
 		}
@@ -67,16 +67,19 @@ function LevelSelect() : MenuItem() constructor {
 			draw_rect_px(_x + width, _y + arrTop, arrWidth, arrHeight, 0, 0, 0.3);
 		}
 		draw_sprite_ext(sp, 0, _x, _y, z, z, 0, -1, 1);
-		//draw_text_shadow(_menu.x, _menu.y, `${room_get_name(rm)} ${z}`);
+		draw_set_halign(1);
+		draw_set_color(_menu.selected ? c_white : c_menugray);
+		draw_text_shadow(_menu.x, _menu.y, objControl.roomNames[?rm]);
 		_menu.y += height;
 	}
 	static sync = function() {
 		var n = input_count_active();
+		rooms = objControl.roomsPerPlayerCount[n];
 		if (n != lastCount) {
-			index = 0;
+			index = array_find_index(rooms, objControl.lastGameRoom);
+			if (index < 0) index = 0;
 			lastCount = n;
 		}
-		rooms = objControl.roomsPerPlayerCount[n];
 		//
 		var rm = rooms[index];
 		var sp = objControl.roomSprites[?rm];
@@ -92,7 +95,7 @@ levelSelect = new LevelSelect();
 playMenu = new Menu([
 	levelSelect,
 	new MenuButton("Start", function() {
-		
+		with (objMenu.levelSelect) objControl.gotoLevel(rooms[index]);
 	}),
 	new MenuBack(function() {
 		menu = mainMenu;

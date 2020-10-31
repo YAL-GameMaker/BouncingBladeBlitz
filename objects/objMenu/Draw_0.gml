@@ -57,7 +57,7 @@ if (is_input) {
 	canstart = input_kind[0] >= 0;
 	var nop1 = "\nCan't start with P1 not assigned.";
 	for (var p = 0; p < maxplayers; p++) {
-		draw_rectangle_px(_x, _y, _x + _w, _y + _h, 0, 0, input_kind[p] >= 0 ? 0.9 : 0.5);
+		draw_rectangle_px(_x, _y, _x + _w, _y + _h, 0, 0, input_kind[p] >= 0 ? 0.5 : 0.2);
 		draw_rectangle_px(_x, _y, _x + _w, _y + _h, 1, -1);
 		var s; switch (input_kind[p]) {
 			case 0:
@@ -75,7 +75,7 @@ if (is_input) {
 				s = "Empty";
 				s += "\nEnter (keyboard) or\nStart (gamepad) to assign";
 		}
-		draw_text(_x + 4, _y + 4, "Player " + string(p + 1) + ": " + s);
+		draw_text_shadow(_x + 4, _y + 4, "Player " + string(p + 1) + ": " + s);
 		_y += _h + _p;
 	}
 	exit;

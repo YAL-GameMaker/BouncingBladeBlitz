@@ -80,8 +80,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"8bb7a6e0-0564-4cde-8b95-a3e2d43361db","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "Bandits",
-    "path": "folders/Sprites/Bandits.yy",
+    "name": "Tall",
+    "path": "folders/Sprites/Bandits/Tall.yy",
   },
   "resourceVersion": "1.0",
   "name": "sprTallBanditWalk",

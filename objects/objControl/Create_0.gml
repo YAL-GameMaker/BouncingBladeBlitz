@@ -9,3 +9,13 @@ roomCapInd = -1;
 roomSprites = ds_map_create();
 roomNames = ds_map_create();
 roomsPerPlayerCount = [[], [], []];
+lastGameRoom = -1;
+randomize();
+display_set_gui_size(480, 270);
+wins = [0, 0];
+discVel = 0;
+function gotoLevel(rm) {
+	wins = [0, 0];
+	discVel = 0;
+	room_goto(rm);
+}

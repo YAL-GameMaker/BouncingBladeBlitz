@@ -96,7 +96,7 @@ function input_pressed(_plr, _btn) {
 			if (_kind == 0) {
 				return keyboard_check_pressed(_index * 256 + vk_escape);
 			} else if (_kind == 1) {
-				return gamepad_button_check_pressed(_index, gp_face2)
+				return gamepad_button_check_pressed(_index, gp_face2) && !instance_exists(objLevel)
 					|| gamepad_button_check_pressed(_index, gp_select);
 			}
 			break;

@@ -5,9 +5,11 @@ repeat (1 + has_weapon) {
     if (wep_iter == 0) {
         var qs = sprite_index;
         var qi = image_index;
+        var qb = image_blend;
+        if (jump_cool > 0 && z <= 0) qb = c_menugray;
         if (qs != -1) draw_sprite_ext(qs, qi, x, y - z,
             image_xscale * facing, image_yscale,
-            image_angle, image_blend, image_alpha);
+            image_angle, qb, image_alpha);
     } else {
         var cwep_angle = weapon_angle;
         var cwep_yscale = dcos(weapon_angle) < 0 ? -1 : 1;

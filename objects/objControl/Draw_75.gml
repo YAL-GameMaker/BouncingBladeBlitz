@@ -17,6 +17,9 @@ if (roomCapInd != -1) {
 	roomSprites[?room] = sprite_create_from_surface(s1, 0, 0, w1, h1, 0, 0, 0, 0);
 	surface_free(s1);
 	//
+	var name = room_get_name(room);
+	roomNames[?room] = string_delete(name, 1, 2);
+	//
 	if (roomCapInd < array_length(roomsToCap)) {
 		room_goto(roomsToCap[roomCapInd++]);
 	} else {

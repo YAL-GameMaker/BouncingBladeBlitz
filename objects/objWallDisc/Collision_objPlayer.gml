@@ -1,0 +1,1 @@
+other.getHitBy(self, 4);

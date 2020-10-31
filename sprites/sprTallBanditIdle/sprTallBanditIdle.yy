@@ -80,8 +80,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"4660c2e1-316e-4fb4-98e2-91ed5a48ead0","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "Bandits",
-    "path": "folders/Sprites/Bandits.yy",
+    "name": "Tall",
+    "path": "folders/Sprites/Bandits/Tall.yy",
   },
   "resourceVersion": "1.0",
   "name": "sprTallBanditIdle",
