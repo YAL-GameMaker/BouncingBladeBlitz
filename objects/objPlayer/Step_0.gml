@@ -1,4 +1,4 @@
-//if (live_call()) exit;
+if (timestop) exit;
 var accel = 1.5, dd;
 var dx = input_axis(player_index, input.walk_x);
 var dy = input_axis(player_index, input.walk_y);

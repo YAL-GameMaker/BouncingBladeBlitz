@@ -1,3 +1,4 @@
+if (timestop) exit;
 var sv = sign(vel) * 2;
 switch (dir) {
 	case 0: {

@@ -1,4 +1,4 @@
-//if (live_call()) exit;
+if (timestop) exit;
 var vx = vel * ax;
 var vy = vel * ay;
 var ox = x, oy = y;

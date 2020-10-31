@@ -1,4 +1,3 @@
-//if (live_call()) exit;
 var has_weapon = true;
 var wep_iter = lengthdir_y(1, weapon_angle) < 0 ? -1 : 0;
 

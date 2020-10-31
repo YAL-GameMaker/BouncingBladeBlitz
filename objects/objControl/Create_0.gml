@@ -1,0 +1,11 @@
+globalvar gmt_active, gmt_delay, gmt_count, timestop;
+timestop = false;
+var inf = os_get_info();
+gmt_active = ds_map_exists(inf, "gmt:net_index");
+gmt_delay = orf(inf[?"gmt:net_delay"], 0);
+gmt_count = orf(inf[?"gmt:net_count"], 0);
+ds_map_destroy(inf);
+roomCapInd = -1;
+roomSprites = ds_map_create();
+roomNames = ds_map_create();
+roomsPerPlayerCount = [[], [], []];

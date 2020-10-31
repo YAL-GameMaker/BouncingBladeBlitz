@@ -1,4 +1,4 @@
-var a = random(360);
+var a = 90;
 image_angle = a;
 ax = lengthdir_x(1, a);
 ay = lengthdir_y(1, a);
