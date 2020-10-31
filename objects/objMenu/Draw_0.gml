@@ -1,7 +1,14 @@
-draw_set_font(fntMenu);
 var vc = view_camera[0];
 var vw = camera_get_view_width(vc);
 var vh = camera_get_view_height(vc);
+draw_set_font(fntCredits);
+draw_set_color(-1);
+draw_set_alpha(0.3);
+draw_text(4, 4, "Game by YellowAfterlife"
+	+ "\nFor Disc Room Game Jam"
+);
+draw_set_alpha(1);
+draw_set_font(fntMenu);
 if (is_input) {
 	var _w = 320;
 	var _h = 80;

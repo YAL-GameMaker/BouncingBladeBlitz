@@ -3,3 +3,4 @@
 var a = image_angle;
 ax = lengthdir_x(1, a);
 ay = lengthdir_y(1, a);
+sprite_index = sprWallDiscSmall;
