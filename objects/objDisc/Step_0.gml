@@ -38,5 +38,12 @@ if (position_meeting(x + vx, y + vy, objFloor)) {
 	screen_shake_at(x, y, min(vel, 4));
 	image_xscale = 1 + (vel - 0.5) * 0.1;
 	image_angle = point_direction(0, 0, ax, ay);
+	//
+	if (1) { // doesn't really fit if we're being honest
+		var snd = choose(DR_SFX_DiscBounce1, DR_SFX_DiscBounce2, DR_SFX_DiscBounce3, DR_SFX_DiscBounce4);
+		var au = audio_play_sound(snd, 0, 0);
+		audio_sound_gain(au, 0.1, 0);
+		audio_sound_pitch(au, 1.5);
+	}
 }
 addTrail(ox, oy, x, y);

@@ -75,6 +75,9 @@ else if (input_pressed(player_index, input.hit)) {
 	weapon_flip *= -1;
 	weapon_flip_cool = -1;
 	//
+	var au = audio_play_sound(DR_SFX_CINEMATIC_KIK1a, 1, 0);
+	audio_sound_pitch(au, random_range(0.9, 1.1));
+	//
 	var slash = instance_create_layer(x, y, "Projectiles", objSlash);
 	slash.player_index = player_index;
 	slash.direction = weapon_angle;
