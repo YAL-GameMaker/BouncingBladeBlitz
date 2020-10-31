@@ -5,7 +5,10 @@
   },
   "solid": false,
   "visible": true,
-  "spriteMaskId": null,
+  "spriteMaskId": {
+    "name": "mskWallDiscSmall",
+    "path": "sprites/mskWallDiscSmall/mskWallDiscSmall.yy",
+  },
   "persistent": false,
   "parentObjectId": null,
   "physicsObject": false,
