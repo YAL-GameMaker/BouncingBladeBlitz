@@ -15,14 +15,14 @@ if (is_input) {
 	var _p = 10;
 	var _x = (vw - _w) div 2;
 	var _y = (vh - _h * maxplayers - _p * (maxplayers - 1)) div 2;
-	var canstart = input_kind[0] >= 0;
 	var only2p = true;
+	var canstart = only2p ? input_count_active() == 2 : input_kind[0] >= 0;
 	for (var p = 0; p < maxplayers; p++) {
 		if (input_kind[p] < 0) {
 			var i, k;
 			//
 			var n = gmt_count + 1;
-			for (i = 0; i < n; i++) {
+			for (i = gmt_active; i < n; i++) {
 				for (k = 0; k < maxplayers; k++) {
 					if (input_kind[k] == 0 && input_index[k] == i) break;
 				}
@@ -49,20 +49,20 @@ if (is_input) {
 				}
 			}
 			if (i < n) break;
+			//
+			if (p == 0 || only2p) canstart = false;
 		} else {
 			if (input_pressed(p, input.back)) {
 				input_kind[p] = -1;
 				input_index[p] = -1;
-				if (p == 0 || only2p) canstart = false;
 				break;
-			}
-			if (input_pressed(p, input.accept)) {
-				is_input = false;
-				levelSelect.sync();
 			}
 		}
 	}
-	canstart = input_kind[0] >= 0;
+	if (canstart && input_pressed_any(input.accept)) {
+		is_input = false;
+		levelSelect.sync();
+	}
 	var nop1 = (only2p
 		? "\nNeed two players to start."
 		: "\nCan't start with P1 not assigned."
