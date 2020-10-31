@@ -1,9 +1,9 @@
 {
-  "option_windows_display_name": "Created with GameMaker Studio 2",
-  "option_windows_executable_name": "${project_name}.exe",
+  "option_windows_display_name": "Bouncing Blade Blitz by YellowAfterlife",
+  "option_windows_executable_name": "BouncingBladeBlitz.exe",
   "option_windows_version": "1.0.0.0",
   "option_windows_company_info": "YoYo Games Ltd",
-  "option_windows_product_info": "Created with GameMaker Studio 2",
+  "option_windows_product_info": "Bouncing Blade Blitz by YellowAfterlife",
   "option_windows_copyright_info": "",
   "option_windows_description_info": "A GameMaker Studio 2 Game",
   "option_windows_display_cursor": true,
