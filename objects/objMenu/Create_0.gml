@@ -105,6 +105,6 @@ playMenu = new Menu([
 	}),
 ]);
 if (noMain) {
-	//levelSelect.sync();
+	if (!is_input) levelSelect.sync();
 	menu = playMenu;
 } else menu = mainMenu;
