@@ -39,6 +39,7 @@
     {"id":{"name":"sprShadow16","path":"sprites/sprShadow16/sprShadow16.yy",},"order":1,},
     {"id":{"name":"objFloor","path":"objects/objFloor/objFloor.yy",},"order":1,},
     {"id":{"name":"objShadows","path":"objects/objShadows/objShadows.yy",},"order":2,},
+    {"id":{"name":"Motion","path":"scripts/Motion/Motion.yy",},"order":5,},
     {"id":{"name":"sprWallBot","path":"sprites/sprWallBot/sprWallBot.yy",},"order":1,},
     {"id":{"name":"sprWallDisc","path":"sprites/sprWallDisc/sprWallDisc.yy",},"order":6,},
     {"id":{"name":"sprBanditWalk","path":"sprites/sprBanditWalk/sprBanditWalk.yy",},"order":1,},

@@ -11,6 +11,7 @@ mainMenu = new Menu([
 		is_input = true;
 	}),
 ]);
+noMain = true;
 //
 function LevelSelect() : MenuItem() constructor {
 	width = 100;
@@ -98,7 +99,12 @@ playMenu = new Menu([
 		with (objMenu.levelSelect) objControl.gotoLevel(rooms[index]);
 	}),
 	new MenuBack(function() {
-		menu = mainMenu;
+		if (noMain) {
+			is_input = true;
+		} else menu = mainMenu;
 	}),
 ]);
-menu = mainMenu;
+if (noMain) {
+	//levelSelect.sync();
+	menu = playMenu;
+} else menu = mainMenu;

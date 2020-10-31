@@ -2,7 +2,7 @@
 globalvar input_kind, input_index;
 input_kind = array_create(maxplayers, -1);
 input_index = array_create(maxplayers, -1);
-input_kind = [0, 1]; input_index = [0, 0];
+//input_kind = [0, 1]; input_index = [0, 0];
 
 globalvar gamepad_axis_lval_x0, gamepad_axis_lval_x1, gamepad_axis_lval_y0, gamepad_axis_lval_y1;
 gamepad_axis_lval_x0 = array_create(maxplayers, 0);
