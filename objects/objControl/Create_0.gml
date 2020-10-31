@@ -2,6 +2,9 @@ globalvar gmt_active, gmt_delay, gmt_count, timestop;
 timestop = false;
 var inf = os_get_info();
 gmt_active = ds_map_exists(inf, "gmt:net_index");
+if (gmt_active) {
+	debug_event("gmt:multidevice");
+}
 gmt_delay = orf(inf[?"gmt:net_delay"], 0);
 gmt_count = orf(inf[?"gmt:net_count"], 0);
 ds_map_destroy(inf);
