@@ -1,6 +1,10 @@
 var sw = surface_get_width(application_surface);
 var sh = surface_get_height(application_surface);
-if (!surface_exists(surf)) surf = surface_create(sw, sh);
+if (!surface_exists(surf)) {
+	surf = surface_create(sw, sh);
+} else if (surface_get_width(surf) != sw || surface_get_height(surf) != sh) {
+	surface_resize(surf, sw, sh);
+}
 //
 surface_set_target(surf);
 draw_clear_alpha(0, 0);
