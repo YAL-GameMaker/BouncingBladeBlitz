@@ -27,6 +27,7 @@ lastGameRoom = -1;
 
 wins = [0, 0];
 discVel = 0;
+discVelNudge = 0;
 function gotoLevel(rm) {
 	wins = [0, 0];
 	discVel = 0;
@@ -56,4 +57,5 @@ function updateScoreForCurrentRoom() {
 	}
 }
 scoreDisplayMultiplier = 2;
+oldBestScore = 0;
 #endregion
