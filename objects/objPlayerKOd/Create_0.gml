@@ -1,1 +1,1 @@
-timer = 60;
+timer = 90;
