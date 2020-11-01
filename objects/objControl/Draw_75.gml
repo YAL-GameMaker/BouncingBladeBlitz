@@ -6,13 +6,23 @@ if (roomCapInd != -1) {
 	var w1 = 480;
 	var h1 = 270;
 	var s1 = surface_create(w1, h1);
+	var html5 = (os_browser != browser_not_a_browser)
 	surface_set_target(s1);
-	draw_clear(c_white);
-	gpu_set_colorwriteenable(1,1,1,0);
+	if (html5) {
+		draw_clear(c_black);
+		gpu_set_blendmode(bm_add);
+	} else {
+		draw_clear(c_white);
+		gpu_set_colorwriteenable(1,1,1,0);
+	}
 	gpu_set_texfilter(1);
 	draw_surface_stretched(sf, 0, 0, w1, h1);
 	gpu_set_texfilter(0);
-	gpu_set_colorwriteenable(1,1,1,1);
+	if (html5) {
+		gpu_set_blendmode(bm_normal);
+	} else {
+		gpu_set_colorwriteenable(1,1,1,1);
+	}
 	surface_reset_target();
 	roomSprites[?room] = sprite_create_from_surface(s1, 0, 0, w1, h1, 0, 0, 0, 0);
 	surface_free(s1);
