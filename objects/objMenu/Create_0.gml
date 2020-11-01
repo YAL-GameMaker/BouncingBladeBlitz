@@ -15,11 +15,16 @@ noMain = true;
 //
 levelSelect = new LevelSelect();
 //
+coopToggle = new MenuButton("Coop mode: " + onoff(objControl.coopMode), function() {
+	objControl.coopMode = !objControl.coopMode;
+	coopToggle.label = "Coop mode: " + onoff(objControl.coopMode);
+});
 playMenu = new Menu([
 	levelSelect,
 	new MenuButton("Start", function() {
 		with (objMenu.levelSelect) objControl.gotoLevel(rooms[index]);
 	}),
+	coopToggle,
 	new MenuBack(function() {
 		if (noMain) {
 			is_input = true;

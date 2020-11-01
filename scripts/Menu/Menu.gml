@@ -1,6 +1,7 @@
 #macro c_menugray 0xC9CACC
 function MenuItem() constructor {
 	selectable = true;
+	visible = true;
 	static measure = function() { return 0; }
 	static draw = function(_menu) {}
 	static input = function(_menu) {}
@@ -16,14 +17,16 @@ function Menu(_items) constructor {
 		var n = array_length(items)
 		for (var i = 0; i < n; i++) {
 			selected = i == index;
-			items[i].draw(self);
+			var item = items[i];
+			if (item.visible) item.draw(self);
 		}
 	}
 	static measure = function() {
 		var h = 0;
 		var n = array_length(items)
 		for (var i = 0; i < n; i++) {
-			h += items[i].measure(self);
+			var item = items[i];
+			if (item.visible) h += item.measure(self);
 		}
 		return h;
 	}
@@ -34,15 +37,18 @@ function Menu(_items) constructor {
 		if (d != 0) repeat (n) {
 			index = (index + d) % n;
 			if (index < 0) index += n;
-			if (items[index].selectable) break;
+			var item = items[index];
+			if (item.visible && item.selectable) break;
 		}
 		//
 		x = _x;
 		y = _y;
 		for (var i = 0; i < n; i++) {
 			selected = i == index;
-			var _val = items[i].input(self);
-			if (_val) break;
+			var item = items[i];
+			if (item.visible) {
+				if (item.input(self)) break;
+			}
 		}
 	}
 }

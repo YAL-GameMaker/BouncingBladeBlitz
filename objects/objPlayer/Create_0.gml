@@ -32,7 +32,9 @@ function getHit(_vel, _dir) {
 	if (invulnerable) return false;
 	if (z > 0) return false;
 	objControl.updateScoreForCurrentRoom();
-	with (objPlayer) if (id != other.id) invulnerable = true;
+	if (!objControl.coopMode) {
+		with (objPlayer) if (id != other.id) invulnerable = true;
+	}
 	screen_shake_at(x, y, 10 + 5 * _vel);
 	with (instance_create_layer(x, y, layer, objPlayerKOd)) {
 		vel = _vel;

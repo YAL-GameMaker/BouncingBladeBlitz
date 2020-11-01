@@ -13,6 +13,7 @@ if (is_input) {
 	InputMenu();
 	exit;
 }
+coopToggle.visible = input_count_active() > 1; 
 var h = menu.measure();
 menu.draw(vw div 2, (vh - h) div 2);
 menu.input(vw div 2, (vh - h) div 2);

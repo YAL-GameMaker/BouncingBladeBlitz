@@ -3,6 +3,9 @@ function Math() {}
 function orf(a, b) {
 	return a ? a : b;
 }
+function onoff(z) {
+	return z ? "On" : "Off";
+}
 
 function point_length(_x, _y) {
 	return point_distance(0, 0, _x, _y);

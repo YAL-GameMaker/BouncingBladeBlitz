@@ -74,7 +74,9 @@ function LevelSelect() : MenuItem() constructor {
 		
 		// best score, if any:
 		var best = objControl.scoresPerRoom[?room_get_name(rm)];
-		if (best != undefined) {
+		if (best != undefined
+			&& (objControl.coopMode || input_count_active() == 1)
+		) {
 			best *= objControl.scoreDisplayMultiplier;
 			draw_set_valign(2);
 			draw_text_shadow(_menu.x, _menu.y + height, sfmt("Best: %",best));

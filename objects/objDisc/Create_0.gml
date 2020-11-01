@@ -11,7 +11,7 @@ function addTrail(x1, y1, x2, y2) {
 	t.image_angle = d;
 	t.image_xscale = l / 4;
 	ds_list_clear(colist);
-	var hit = false;
+	var playersHit = 0;
 	var dx = lengthdir_x(1, d - 90);
 	var dy = lengthdir_x(1, d - 90);
 	for (var k = -2; k <= 2; k += 2) {
@@ -21,10 +21,12 @@ function addTrail(x1, y1, x2, y2) {
 			objPlayer, true, true, colist, false
 		);
 		for (var i = 0; i < n; i++) {
-			if (colist[|i].getHit(l, d)) hit = true;
+			if (colist[|i].getHit(l, d)) playersHit += 1;
 		}
 	}
-	if (hit) {
+	if (playersHit > 0
+		&& !(objControl.coopMode || input_count_active() == 1)
+	) {
 		with (objControl) {
 			discVel = other.vel;
 			updateScoreForCurrentRoom();

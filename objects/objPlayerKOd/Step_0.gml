@@ -3,7 +3,9 @@ var vy = vel * ay;
 vel = max(vel - 0.1, 0);
 
 if (vel <= 0) {
-	if (--timer <= 0) {
+	if (objControl.coopMode && instance_number(objPlayer) > 0) {
+		// wait till everyone's dead
+	} else if (--timer <= 0) {
 		with (objPlayer) {
 			objControl.wins[player_index]++;
 		}
