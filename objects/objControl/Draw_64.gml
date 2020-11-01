@@ -4,7 +4,7 @@ if (instance_exists(objLevel)) {
 	var p = 5;
 	with (objDisc) other.discVel = vel;
 	var w = display_get_gui_width();
-	var showWins = input_count_active() > 1;
+	var showWins = input_count_active() > 1 && !coopMode;
 	if (showWins) {
 		draw_set_halign(0);
 		draw_text_shadow(p, p, string(wins[0]));
