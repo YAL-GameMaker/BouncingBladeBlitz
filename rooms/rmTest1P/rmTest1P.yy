@@ -105,9 +105,6 @@
   },
   "resourceVersion": "1.0",
   "name": "rmTest1P",
-  "tags": [
-    "level",
-    "1p",
-  ],
+  "tags": [],
   "resourceType": "GMRoom",
 }

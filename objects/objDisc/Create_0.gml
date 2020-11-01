@@ -25,6 +25,10 @@ function addTrail(x1, y1, x2, y2) {
 		}
 	}
 	if (hit) {
+		with (objControl) {
+			discVel = other.vel;
+			updateScoreForCurrentRoom();
+		}
 		instance_create_layer(x, y, "WallTops", objDiscExplode);
 		instance_destroy();
 	}

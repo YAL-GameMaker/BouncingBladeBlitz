@@ -53,7 +53,7 @@ function LevelSelect() : MenuItem() constructor {
 				return true;
 			}
 		}
-		_menu.y += height;
+		_menu.y += height + _menu.pad;
 	}
 	static draw = function(_menu) {
 		var rm = rooms[index];
@@ -71,7 +71,14 @@ function LevelSelect() : MenuItem() constructor {
 		draw_set_halign(1);
 		draw_set_color(_menu.selected ? c_white : c_menugray);
 		draw_text_shadow(_menu.x, _menu.y, objControl.roomNames[?rm]);
-		_menu.y += height;
+		var best = objControl.scoresPerRoom[?room_get_name(rm)];
+		if (best != undefined) {
+			best *= objControl.scoreDisplayMultiplier;
+			draw_set_valign(2);
+			draw_text_shadow(_menu.x, _menu.y + height, sfmt("Best: %",best));
+			draw_set_valign(0);
+		}
+		_menu.y += height + _menu.pad;
 	}
 	static sync = function() {
 		var n = input_count_active();

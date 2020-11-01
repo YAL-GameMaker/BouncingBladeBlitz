@@ -104,6 +104,7 @@
   "tags": [
     "2p",
     "level",
+    "1p",
   ],
   "resourceType": "GMRoom",
 }
