@@ -46,16 +46,33 @@ function LevelSelect() : MenuItem() constructor {
 		var z = scale;
 		var _x = _menu.x - width div 2;
 		var _y = _menu.y;
+		
+		// mouseover areas:
+		if (mouse_in_rect(_x, _y, width, height)) {
+			draw_rect_px(_x - 1, _y - 1, width + 2, height + 2, 0, 0, 0.3);	
+		}
 		if (mouse_in_rect(_x - arrWidth, _y + arrTop, arrWidth, arrHeight)) {
 			draw_rect_px(_x - arrWidth, _y + arrTop, arrWidth, arrHeight, 0, 0, 0.3);
 		}
 		if (mouse_in_rect(_x + width, _y + arrTop, arrWidth, arrHeight)) {
 			draw_rect_px(_x + width, _y + arrTop, arrWidth, arrHeight, 0, 0, 0.3);
 		}
-		draw_sprite_ext(sp, 0, _x, _y, z, z, 0, -1, 1);
+		
+		// arrows:
 		draw_set_halign(1);
+		draw_set_valign(1);
+		draw_text_shadow(_x - arrWidth div 2, _y + arrTop + arrHeight div 2, "<");
+		draw_text_shadow(_x + width + arrWidth div 2, _y + arrTop + arrHeight div 2, ">");
+		
+		// level screenshot:
+		draw_sprite_ext(sp, 0, _x, _y, z, z, 0, -1, 1);
+		
+		// level name:
+		draw_set_valign(0);
 		draw_set_color(_menu.selected ? c_white : c_menugray);
 		draw_text_shadow(_menu.x, _menu.y, objControl.roomNames[?rm]);
+		
+		// best score, if any:
 		var best = objControl.scoresPerRoom[?room_get_name(rm)];
 		if (best != undefined) {
 			best *= objControl.scoreDisplayMultiplier;
