@@ -106,6 +106,6 @@ if (zspeed != 0 || z > 0) {
 	if (z < 0) { z = 0; zspeed = 0; }
 }
 if (input_pressed(player_index, input.back)) {
-	lastGameRoom = room;
+	objControl.lastGameRoom = room;
 	room_goto(rmMenu);
 }
