@@ -65,14 +65,19 @@ var dir = input_aimdir(player_index);
 if (dir != undefined) weapon_angle = dir;
 
 //
+var _hit = input_pressed(player_index, input.hit);
 if (weapon_cool > 0) {
 	if (--weapon_cool <= 0) {
 		weapon_flip_cool = 1;
 	}
+	if (_hit) weapon_buffer = 20;
 }
-else if (input_pressed(player_index, input.hit)
-	&& (z <= 0 || zspeed < 0)
-) {
+else if (z > 0 && zspeed >= 0) {
+	// can't hit while flying up
+	if (_hit) weapon_buffer = 20;
+}
+else if (_hit || weapon_buffer > 0) {
+	weapon_buffer = 0;
 	weapon_cool = 30;
 	weapon_flip *= -1;
 	weapon_flip_cool = -1;
@@ -87,20 +92,24 @@ else if (input_pressed(player_index, input.hit)
 	slash.image_angle = weapon_angle;
 	weapon_post(-4, 12, 1);
 }
+if (weapon_buffer > 0) weapon_buffer -= 1;
 
 //
 if (z <= 0) {
 	if (jump_cool > 0) {
 		jump_cool -= 1;
+		if (dz) jump_buffer = 20;
 	} else {
-		if (dz) {
+		if (dz || jump_buffer > 0) {
 			zspeed = 3;
-			jump_cool = 30;
+			jump_cool = 20;
+			jump_buffer = 0;
 		}
 	}
 } else {
 	zspeed -= 0.25;
 }
+if (jump_buffer > 0) jump_buffer -= 1;
 if (zspeed != 0 || z > 0) {
 	z += zspeed;
 	if (z < 0) { z = 0; zspeed = 0; }
