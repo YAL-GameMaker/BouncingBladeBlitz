@@ -6,7 +6,7 @@
     "path": "folders/Scripts/UI.yy",
   },
   "resourceVersion": "1.0",
-  "name": "Menu",
+  "name": "LevelSelect",
   "tags": [],
   "resourceType": "GMScript",
 }
