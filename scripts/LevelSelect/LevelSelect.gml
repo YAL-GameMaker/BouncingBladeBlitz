@@ -73,10 +73,8 @@ function LevelSelect() : MenuItem() constructor {
 		draw_text_shadow(_menu.x, _menu.y, objControl.roomNames[?rm]);
 		
 		// best score, if any:
-		var best = objControl.scoresPerRoom[?room_get_name(rm)];
-		if (best != undefined
-			&& (objControl.coopMode || input_count_active() == 1)
-		) {
+		var best = orf(objControl.scoresPerRoom[?room_get_name(rm)], 0);
+		if (objControl.coopMode || input_count_active() == 1) {
 			best *= objControl.scoreDisplayMultiplier;
 			draw_set_valign(2);
 			draw_text_shadow(_menu.x, _menu.y + height, sfmt("Best: %",best));
