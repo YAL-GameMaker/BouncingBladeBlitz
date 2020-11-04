@@ -6,7 +6,8 @@ var ox = x, oy = y;
 if (position_meeting(x + vx, y + vy, objFloor)) {
 	x += vx;
 	y += vy;
-} else {
+} else { // bounce
+	// approach the wall to have a precise trail:
 	var vd = 0;
 	repeat (vel) {
 		if (!position_meeting(x + ax, y + ay, objFloor)) break;
@@ -19,7 +20,8 @@ if (position_meeting(x + vx, y + vy, objFloor)) {
 	addTrail(ox, oy, x + ax, y + ay);
 	ox = x + ax;
 	oy = y + ay;
-	//
+	
+	// actual (simple) bounce logic:
 	if (position_meeting(x - vx, y + vy, objFloor)) {
 		ax *= -1;
 		x -= vx;
@@ -36,7 +38,7 @@ if (position_meeting(x + vx, y + vy, objFloor)) {
 	}
 	//
 	screen_shake_at(x, y, min(vel, 4));
-	image_xscale = 1 + (vel - 0.5) * 0.1;
+	image_xscale = 1 + (vel - 0.5) * 0.1; // the disc's collider doesn't get longer but this looks cool
 	image_angle = point_direction(0, 0, ax, ay);
 	//
 	if (1) { // doesn't really fit if we're being honest

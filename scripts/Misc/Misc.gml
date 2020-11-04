@@ -19,8 +19,6 @@ function trace_1(b, v, d) {
 	if (is_array(v)) {
 		if (d > 8) {
 			buffer_write(b, buffer_text, "[...]");
-		} else if (array_height_2d(v) > 1) {
-			buffer_write(b, buffer_text, string(v));
 		} else {
 			buffer_write(b, buffer_u8, ord("["));
 			n = array_length_1d(v);
@@ -39,6 +37,7 @@ function trace_1(b, v, d) {
 	}
 }
 
+#region view helpers
 function view_get_xview(i) {
 	return camera_get_view_x(view_camera[i]);
 }
@@ -51,7 +50,9 @@ function view_get_wview(i) {
 function view_get_hview(i) {
 	return camera_get_view_height(view_camera[i]);
 }
+#endregion
 
+#region sfmt
 global.sfmt_buf = buffer_create(1024, buffer_grow, 1);
 global.sfmt_map = ds_map_create();
 global.sfmt_warn = ds_map_create();
@@ -93,3 +94,4 @@ function sfmt() {
 	buffer_seek(b, buffer_seek_start, 0);
 	return buffer_read(b, buffer_string);
 }
+#endregion

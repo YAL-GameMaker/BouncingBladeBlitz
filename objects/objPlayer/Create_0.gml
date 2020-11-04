@@ -32,12 +32,16 @@ zspeed = 0;
 invulnerable = false;
 function getHit(_vel, _dir) {
 	if (invulnerable) return false;
-	if (z > 0) return false;
+	if (z > 0) return false; // invulnerable when mid-air
+	screen_shake_at(x, y, 10 + 5 * _vel);
 	objControl.updateScoreForCurrentRoom();
+	
+	// make other players invulnerable when in versus mode:
 	if (!objControl.coopMode) {
 		with (objPlayer) if (id != other.id) invulnerable = true;
 	}
-	screen_shake_at(x, y, 10 + 5 * _vel);
+	
+	// replace ourselves with a knocked out self:
 	with (instance_create_layer(x, y, layer, objPlayerKOd)) {
 		vel = _vel;
 		ax = lengthdir_x(1, _dir);
